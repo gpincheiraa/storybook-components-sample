@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-video-poster',
+  selector: 'video-poster',
   templateUrl: './video-poster.component.html',
   styleUrls: ['./video-poster.component.scss']
 })

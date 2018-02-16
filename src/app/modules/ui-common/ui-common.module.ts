@@ -6,6 +6,11 @@ import { VideoPosterComponent } from './video-poster/video-poster.component';
   imports: [
     CommonModule
   ],
-  declarations: [VideoPosterComponent]
+  declarations: [
+    VideoPosterComponent
+  ],
+  exports: [
+    VideoPosterComponent
+  ]
 })
-export class UiCommonModule { }
+export class UICommonModule { }
