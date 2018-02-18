@@ -17,10 +17,11 @@ export class VideoPosterComponent implements OnInit {
   }
   @Input() public title = 'Custom Cinemagraph Productions';
   @Input() public subtitle = 'Exclusive Content for Businesses';
+  @Input() public showAuthorInfo = true;
 
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }
