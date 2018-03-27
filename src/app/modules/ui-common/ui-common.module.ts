@@ -4,16 +4,16 @@ import { VideoPosterComponent } from './video-poster/video-poster.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [
-    HeaderComponent,
-    VideoPosterComponent
-  ],
-  exports: [
-    HeaderComponent,
-    VideoPosterComponent
-  ]
+	imports: [
+		CommonModule
+	],
+	declarations: [
+		HeaderComponent,
+		VideoPosterComponent
+	],
+	exports: [
+		HeaderComponent,
+		VideoPosterComponent
+	]
 })
 export class UICommonModule { }
