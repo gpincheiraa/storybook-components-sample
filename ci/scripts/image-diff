@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+outputDiffFile="./e2e/screenshots_diff/output.png"
+inputBaseFile="./e2e/screenshots_base/output.png"
+inputNewFile="./e2e/screenshots/output.png"
+
+blink-diff --verbose --output  $outputFile $inputBaseFile  $inputNewFile

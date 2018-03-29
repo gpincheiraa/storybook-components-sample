@@ -1,5 +1,4 @@
 import { storiesOf } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
 import { VideoPosterComponent } from '../../src/app/modules/ui-common/video-poster/video-poster.component';
 
 storiesOf('Video Poster component', module)

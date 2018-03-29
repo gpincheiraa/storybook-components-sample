@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'gp-header',
@@ -6,13 +6,21 @@ import { Component, OnInit, Input } from '@angular/core';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-	public videoUrls;
-	@Input() public title = 'Custom Cinemagraph Productions';
+	@Input() isTransparent = false;
+	public isOpened = false;
+	private mobileThreshold = 767;
 
 	constructor() { }
 
-	ngOnInit() {
+	ngOnInit() { }
 
+	@HostListener('window:resize', ['$event'])
+	onWindowResize(event) {
+		if(this.isOpened && event.target.innerWidth > this.mobileThreshold) {
+			this.isOpened = false;
+		}
+	}
+	handleMenu() {
+		return this.isOpened = !this.isOpened;
 	}
 }
