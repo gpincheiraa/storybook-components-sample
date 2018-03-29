@@ -35,8 +35,9 @@ testem.log
 /typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/e2e/screenshots
+/e2e/screenshots_diff
+/e2e/videos
 
 # System Files
 .DS_Store
