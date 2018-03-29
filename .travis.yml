@@ -4,5 +4,6 @@ node_js: 8.8.0
 install: npm install
 jobs:
   include:
-    - stage: publish storybook
+    - if: branch = master
+      stage: publish storybook
       script: npm run deploy-storybook -- --ci
