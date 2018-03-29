@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'gp-header',
@@ -6,9 +6,11 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+	@ViewChild('navbar') navbar: ElementRef;
 	@Input() isTransparent = false;
 	public isOpened = false;
 	private mobileThreshold = 767;
+	private isTransparentCancelled = true;
 
 	constructor() { }
 
@@ -18,6 +20,14 @@ export class HeaderComponent implements OnInit {
 	onWindowResize(event) {
 		if(this.isOpened && event.target.innerWidth > this.mobileThreshold) {
 			this.isOpened = false;
+		}
+	}
+	@HostListener('window:scroll', ['$event'])
+	onWindowScroll(event) {
+		if(event.target.documentElement.scrollTop > this.navbar.nativeElement.offsetHeight){	
+			this.isTransparentCancelled = false;
+		} else {
+			this.isTransparentCancelled = true;
 		}
 	}
 	handleMenu() {

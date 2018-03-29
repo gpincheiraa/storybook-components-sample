@@ -1,5 +1,5 @@
 <div class="overlay" [class.active]="isOpened"></div>
-<div class="navbar flex-center" [class.white]="isOpened || !isTransparent" [class.menu-active]="isOpened">
+<div #navbar class="navbar flex-center" [class.white]="isOpened || !isTransparent || !isTransparentCancelled" [class.menu-active]="isOpened">
     <div class="navbar-container flex justify-between">
       <a class="logo-wrapper w-inline-block flex align-center" href="/">
         <svg class="logo-image" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
