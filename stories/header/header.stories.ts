@@ -1,5 +1,5 @@
 import { storiesOf, addDecorator } from '@storybook/angular';
-import { withViewport } from '@storybook/addon-viewport';
+//import { withViewport } from '@storybook/addon-viewport';
 import { HeaderComponent } from '../../src/app/modules/ui-common/header/header.component';
 
 storiesOf('Header component', module)
@@ -14,8 +14,8 @@ storiesOf('Header component', module)
 		}
 	}));
 
-storiesOf('Header component Mobile', module)
-	.addDecorator(withViewport('iphone6'))
-	.add('Header white', () => ({
-		component: HeaderComponent
-	}));
+// storiesOf('Header component Mobile', module)
+// 	.addDecorator(withViewport('iphone6'))
+// 	.add('Header white', () => ({
+// 		component: HeaderComponent
+// 	}));
