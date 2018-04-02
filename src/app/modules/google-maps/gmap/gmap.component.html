@@ -23,12 +23,20 @@
         <button id="btn-search-close" class="btn btn--search-close" 
             aria-label="Close search form" 
             (click)="onCloseSearch()">
-            <svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg>
+            <svg class="icon icon--cross">
+                <use xlink:href="#icon-cross"></use>
+            </svg>
         </button>
         <form class="search__form" action="">
-            <input #search class="search__input" name="search"
-                type="text" placeholder="where are you?" autocorrect="off" 
-                autocapitalize="off" spellcheck="false" 
+            <input #search 
+                class="search__input" 
+                name="search"
+                type="text" 
+                placeholder="where are you?" 
+                autocorrect="off" 
+                autocapitalize="off"
+                autocomplete="off"
+                spellcheck="false" 
                 (focus)="onFocusSearch()"
                 [formControl]="searchControl"
             />
@@ -39,12 +47,45 @@
         <div class="search__suggestion">
             <h3>Welcome to Eurovelo route 15</h3>
             <h4>Based on the location that you give us, this are a list of closest restaurants</h4>
-            
+            <ul>
+                <li *ngFor="let store of addresses">
+                   <a (click)="showRouteToStore(store)"> {{store.name}} - {{store.address}} </a>
+                </li>
+            </ul>
         </div>
-    </div><!-- /search -->
+    </div>
 </div>
 
-<agm-map [zoom]="6" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)">
-    <agm-marker [latitude]="lat" [longitude]="lng" iconUrl="https://maps.google.com/mapfiles/kml/shapes/cycling.png"></agm-marker>
-    <agm-marker *ngFor="let location of geocodeAddresses" [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
-</agm-map>
+<div class="map__container" [class.map__container--directions]="actualRoute">
+    <agm-map 
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoomControl]="true"
+        [zoomControlOptions]="zoomControlOptions"
+        (mapReady)="onMapReady($event)">
+        
+        <agm-marker [latitude]="lat" [longitude]="lng" iconUrl="https://maps.google.com/mapfiles/kml/shapes/cycling.png">
+            <agm-info-window [disableAutoPan]="true">
+                Your location: {{ searchControl.value }}
+            </agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let location of geocodeAddresses" [latitude]="location.lat" [longitude]="location.lng">
+            <agm-info-window [disableAutoPan]="true">
+                {{ location.name }} : {{ location.address }}
+            </agm-info-window>
+        </agm-marker>
+    
+        <agm-polyline *ngIf="actualRoute">
+            <agm-polyline-point [latitude]="actualRoute.origin.lat" [longitude]="actualRoute.origin.lng"></agm-polyline-point>
+            <agm-polyline-point [latitude]="actualRoute.destination.lat" [longitude]="actualRoute.destination.lng"></agm-polyline-point>
+        </agm-polyline>
+    
+        <agm-direction *ngIf="actualRoute" 
+            [origin]="actualRoute.origin" 
+            [destination]="actualRoute.destination" 
+            [panel]="myPanel"></agm-direction>
+        
+    </agm-map>
+    
+    <div #myPanel class="panel__directions"></div>
+</div>
